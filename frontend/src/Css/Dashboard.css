@@ -1,0 +1,78 @@
+/* Navigation bar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar h1 {
+  margin: 0;
+}
+
+/* Search bar styles */
+.search-bar {
+  margin-bottom: 1rem;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-form input,
+.search-form select,
+.search-form button {
+  margin-right: 0.5rem;
+}
+
+/* Product grid styles */
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  width: calc(25% - 2rem);
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.product-details {
+  flex-grow: 1;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.product-item button {
+  flex: 1;
+  margin: 0 0.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* Message styles */
+.message {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.message.error {
+  background-color: #ffcccc;
+  color: #cc0000;
+}
