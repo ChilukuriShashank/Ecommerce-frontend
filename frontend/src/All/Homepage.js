@@ -11,11 +11,11 @@ const Homepage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('${config.apiUrl}/getallproducts',{
-        headers: {
-          'x-api-key': 'your-api-key-1'
-        },
-      });
+        const response = await axios.get(`${config.apiUrl}/getallproducts`, {
+          headers: {
+            'x-api-key': 'your-api-key-1'
+          }
+        });
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
@@ -33,9 +33,9 @@ const Homepage = () => {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get('${config.apiUrl}/search', {
+      const response = await axios.get(`${config.apiUrl}/search`, {
         headers: {
-          'x-api-key': 'your-api-key-2' // Replace 'your-api-key' with your actual API key
+          'x-api-key': 'your-api-key-2'
         },
         params: {
           query: searchQuery,
@@ -58,28 +58,6 @@ const Homepage = () => {
     // Construct the WhatsApp link with message
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappLink, '_blank');
-};
-
-
-  // Function to convert image to base64 string
-  const imageToBase64 = (url) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'Anonymous';
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-        const dataURL = canvas.toDataURL('image/jpeg');
-        resolve(dataURL);
-      };
-      img.onerror = (error) => {
-        reject(error);
-      };
-      img.src = url;
-    });
   };
 
   return (

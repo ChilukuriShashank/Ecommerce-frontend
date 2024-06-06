@@ -1,5 +1,5 @@
 const config = {
-    apiUrl: 'http://localhost:5000'
+    apiUrl: 'https://ecommerce-backend-tau-steel.vercel.app'
 };
 
 export default config;
