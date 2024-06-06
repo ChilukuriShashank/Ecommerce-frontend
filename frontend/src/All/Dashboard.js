@@ -26,7 +26,11 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get(`${config.apiUrl}/categories`);
+                const response = await axios.get(`${config.apiUrl}/categories`,{
+                    headers: {
+                        'x-api-key': 'your-api-key-1' // Replace 'your-api-key' with your actual API key
+                      },
+                });
                 setCategories(response.data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -55,6 +59,9 @@ const Dashboard = () => {
         e.preventDefault();
         try {
             const response = await axios.get(`${config.apiUrl}/search`, {
+                headers: {
+                    'x-api-key': 'your-api-key-2' // Replace 'your-api-key' with your actual API key
+                  },
                 params: {
                     query: searchQuery,
                     category,
@@ -76,7 +83,11 @@ const Dashboard = () => {
 
     const handleDelete = async (productId) => {
         try {
-            await axios.delete(`${config.apiUrl}/deleteproduct/${productId}`);
+            await axios.delete(`${config.apiUrl}/deleteproduct/${productId}`,{
+                headers: {
+                    'x-api-key': 'your-api-key-1' // Replace 'your-api-key' with your actual API key
+                  },
+            });
             setSearchResults(searchResults.filter(product => product.productid !== productId));
             setMessage("Deleted Successfully!!");
         } catch (error) {

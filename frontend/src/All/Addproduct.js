@@ -48,7 +48,11 @@ const AddProduct = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post(`${config.apiUrl}/createproduct`, product);
+            const response = await axios.post(`${config.apiUrl}/createproduct`, product,{
+                headers: {
+                    'x-api-key': 'your-api-key-2' // Replace 'your-api-key' with your actual API key
+                }
+            });
             setMessage(response.data.message);
             setProduct({
                 name: '',

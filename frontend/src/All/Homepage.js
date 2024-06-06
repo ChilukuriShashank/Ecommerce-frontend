@@ -11,7 +11,11 @@ const Homepage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('${config.apiUrl}/getallproducts');
+        const response = await axios.get('${config.apiUrl}/getallproducts',{
+        headers: {
+          'x-api-key': 'your-api-key-1'
+        },
+      });
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
@@ -30,6 +34,9 @@ const Homepage = () => {
     e.preventDefault();
     try {
       const response = await axios.get('${config.apiUrl}/search', {
+        headers: {
+          'x-api-key': 'your-api-key-2' // Replace 'your-api-key' with your actual API key
+        },
         params: {
           query: searchQuery,
         }
