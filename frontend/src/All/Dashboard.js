@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/Dashboard.css';
+import config from '../config';
 
 const Message = ({ type, children }) => {
     return (
@@ -25,7 +26,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/categories');
+                const response = await axios.get(`${config.apiUrl}/categories`);
                 setCategories(response.data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -53,7 +54,7 @@ const Dashboard = () => {
     const handleSearchSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get('http://localhost:5000/search', {
+            const response = await axios.get(`${config.apiUrl}/search`, {
                 params: {
                     query: searchQuery,
                     category,
@@ -75,7 +76,7 @@ const Dashboard = () => {
 
     const handleDelete = async (productId) => {
         try {
-            await axios.delete(`http://localhost:5000/deleteproduct/${productId}`);
+            await axios.delete(`${config.apiUrl}/deleteproduct/${productId}`);
             setSearchResults(searchResults.filter(product => product.productid !== productId));
             setMessage("Deleted Successfully!!");
         } catch (error) {

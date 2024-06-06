@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Css/Homepage.css';
+import config from '../config';
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +11,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/getallproducts');
+        const response = await axios.get('${config.apiUrl}/getallproducts');
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
@@ -28,7 +29,7 @@ const Homepage = () => {
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get('http://localhost:5000/search', {
+      const response = await axios.get('${config.apiUrl}/search', {
         params: {
           query: searchQuery,
         }

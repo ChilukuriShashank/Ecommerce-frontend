@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../Css/Addproduct.css'; // Import CSS file
+import config from '../config';
 
 const AddProduct = () => {
     const [product, setProduct] = useState({
@@ -47,7 +48,7 @@ const AddProduct = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/createproduct', product);
+            const response = await axios.post(`${config.apiUrl}/createproduct`, product);
             setMessage(response.data.message);
             setProduct({
                 name: '',
