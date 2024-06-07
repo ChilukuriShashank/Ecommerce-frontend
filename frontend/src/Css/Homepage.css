@@ -1,79 +1,59 @@
-/* src/Css/Homepage.css */
-.search-bar {
-  margin-bottom: 20px;
-}
-
-.search-bar form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.search-bar input[type="text"],
-.search-bar input[type="number"],
-.search-bar select {
-  margin-right: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-bar button {
-  padding: 7px 15px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .product-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .product-box {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.product-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .product-image {
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.product-details {
+  text-align: left;
 }
 
 .product-details h2 {
-  margin-top: 0;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .product-details p {
+  font-size: 1.1em;
   margin-bottom: 10px;
+  color: #555;
 }
 
 .product-details button {
-  padding: 7px 15px;
-  background-color: #28a745;
-  color: #fff;
+  background-color: #25D366;
+  color: white;
   border: none;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .product-details button:hover {
-  background-color: #218838;
-}
-
-.message {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.message.error {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: #1ebe57;
 }

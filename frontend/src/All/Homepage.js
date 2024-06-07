@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import '../Css/Homepage.css';
 import config from '../config';
 
@@ -7,6 +8,7 @@ const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,16 +50,21 @@ const Homepage = () => {
   };
 
   const handleWhatsAppClick = (product) => {
-    const { name, description, price, images } = product;
+    const { productid } = product;
     const phoneNumber = '7036622150'; // Replace with a valid phone number
     
-    // Construct the message with both text and image URL
-    const message = `Check out this product:\nName: ${name}\nDescription: ${description}\nPrice: $${price}\nImage: ${images[0]}`;
+    // Construct the message with the product detail page link as a clickable URL
+    const message = `Check out this product: ${window.location.origin}/viewproduct/${productid}`;
     const encodedMessage = encodeURIComponent(message);
     
     // Construct the WhatsApp link with message
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappLink, '_blank');
+  };
+  
+
+  const handleProductClick = (pid) => {
+    navigate(`/viewproduct/${pid}`); // Navigate to the product detail page
   };
 
   return (
@@ -80,7 +87,7 @@ const Homepage = () => {
       ) : (
         <div className="product-list">
           {products.map(product => (
-            <div key={product._id} className="product-box">
+            <div key={product._id} className="product-box" onClick={() => handleProductClick(product.productid)}>
               {product.images && product.images.length > 0 && (
                 <img src={product.images[0]} alt={product.name} className="product-image" />
               )}
@@ -88,7 +95,7 @@ const Homepage = () => {
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
                 <p>Price: ${product.price}</p>
-                <button onClick={() => handleWhatsAppClick(product)}>Send WhatsApp Message</button>
+                <button onClick={(e) => { e.stopPropagation(); handleWhatsAppClick(product); }}>Send WhatsApp Message</button>
               </div>
             </div>
           ))}

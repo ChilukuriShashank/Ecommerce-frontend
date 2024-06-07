@@ -1,10 +1,10 @@
-// src/App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Homepage from './All/Homepage';
 import AddProduct from './All/Addproduct';
 import Authentication from './All/Authentication';
 import Dashboard from './All/Dashboard';
+import ViewProduct from './All/ViewProduct';
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -14,6 +14,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/viewproduct/:pid" element={<ViewProduct />} />
           <Route path="/login" element={<Authentication setAuthenticated={setAuthenticated} />} />
           {authenticated ? (
             <>
